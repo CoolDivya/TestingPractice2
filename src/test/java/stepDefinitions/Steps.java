@@ -11,9 +11,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pageObjects.LoginPage;
 
 public class Steps {
-	WebDriver driver;
+	protected WebDriver driver;
+	LoginPage login;
 	 
 	 @Given("^user is on Home Page$")
 	 public void user_is_on_Home_Page(){
@@ -26,17 +28,17 @@ public class Steps {
 	 
 	 @When("^login id is \"([^\"]*)\" and Password is \"([^\"]*)\"$")
 	 public void enter_login_id_password(String id, String password){
-		
-	 driver.findElement(By.xpath("//input[@name='loginId']")).sendKeys(id);
-	 driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+	 
+	 login=new LoginPage(driver);
+	 login.enter_loginid_password(id,password);
 	 }
 	 
 	 
 	
 	 @Then("^click on login button$")
-	 public void click_on_loginButton(){
-		
-	 driver.findElement(By.xpath("//input[@id='login']")).click();
+	 public void click_on_loginButton() throws InterruptedException{
+	 login=new LoginPage(driver);
+	 login.click_login();
 	 }
 	 
 	 
