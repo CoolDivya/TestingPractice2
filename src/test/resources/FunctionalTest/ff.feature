@@ -20,8 +20,18 @@
 Feature: Title of your feature
   I want to use this template for my feature file
 
-   @tag1
-  Scenario: Login valid credentials
+  # @tag1
+  #Scenario: Login valid credentials
+   # Given user is on Home Page
+    #When login id is "superuser" and Password is "password"
+    #Then click on login button
+
+    
+    Scenario: Create Template
     Given user is on Home Page
     When login id is "superuser" and Password is "password"
     Then click on login button
+    Then user is on EFT page
+    Then verify AllTemplate folder is available or not
+    Then create template "TestTemp" and create number of categories "2"
+    

@@ -1,22 +1,24 @@
 package stepDefinitions;
 
-import java.util.List;
+
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pageObjects.CreateEFT;
 import pageObjects.LoginPage;
 
 public class Steps {
 	protected WebDriver driver;
+	boolean found;
+	
 	LoginPage login;
-	 
+	CreateEFT createEFT;
+	
 	 @Given("^user is on Home Page$")
 	 public void user_is_on_Home_Page(){
 		 System.setProperty("webdriver.chrome.driver","C:\\chrome\\chromedriver.exe");
@@ -41,5 +43,31 @@ public class Steps {
 	 login.click_login();
 	 }
 	 
+	 @Given("^user is on EFT page$")
+	 public void user_is_on_EFT_page() throws InterruptedException {
+     createEFT= new CreateEFT(driver);
+     createEFT.OpenEFTPage();
+	    
+	 }
+
+	 @When("^verify AllTemplate folder is available or not$")
+	 public void verify_AllTemplate_folder_is_available_or_not()  {
+	 createEFT= new CreateEFT(driver);
+	 found=createEFT.VerifyAllTemplateFolder();
+	    
+	 }
+
+	 @Then("^create template \"([^\"]*)\" and create number of categories \"([^\"]*)\"$")
+	 public void create_template(String formName,int catgorycount) throws InterruptedException  {
+	 createEFT= new CreateEFT(driver);
+	 if(found)
+	 {
+		 createEFT.addNewTemplate(formName, 2);
+	 }
+	 else
+	 {
+		 System.out.println("AllTemplate is not found");
+	 }
+	 }
 	 
 }

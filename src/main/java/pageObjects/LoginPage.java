@@ -25,8 +25,10 @@ public class LoginPage {
 	{
 		 driver.findElement(By.xpath("//input[@id='login']")).click();
 		 Thread.sleep(5000);
-		driver.findElement(By.xpath("//a[@title='Evaluations']")).click();
-		driver.findElement(By.xpath("//html[1]/body[1]/form[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]")).click();
+		 
+		
+		 
+			
 	}
 
 }
